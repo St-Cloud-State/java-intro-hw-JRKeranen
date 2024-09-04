@@ -41,15 +41,18 @@ public class MyMain {
   }
   // Reads values from input file and adds person into linkedlist, returns linked list.
   static LinkedList store(Scanner inStream, LinkedList<Person> list) {
-    while (inStream.hasNextLine()) {
-        String[] testArr = inStream.nextLine().strip(" ");
-        Person tempPerson = new Person(testArr[1], testArr[2], testArr[0]);
+    try {
+      while (inStream.hasNextLine()) {
+        String tempLine = inStream.nextLine();
+        String[] dataArr = tempLine.split(" ");
+        Person tempPerson = new Person(dataArr[1], dataArr[2], dataArr[0]);
         list.add(tempPerson);
       }
       inStream.close();
     
     return list;
-  }
+  } finally {}
+}
 
   // loops through linked list and outputs each value to the Print Stream
   static void display(PrintStream outStream, LinkedList<Person> list){
